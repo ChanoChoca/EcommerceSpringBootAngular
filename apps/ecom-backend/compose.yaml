@@ -1,0 +1,11 @@
+services:
+  database:
+    image: 'postgres:17.2-alpine3.21'
+    ports:
+      - '5432:5432'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_DB=ecommerce'
+      - 'POSTGRES_PASSWORD=postgres'
+    volumes:
+      - '~/volumes/chanochoca/postgres:/var/lib/postgresql/data'
