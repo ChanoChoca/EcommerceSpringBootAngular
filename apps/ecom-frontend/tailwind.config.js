@@ -9,8 +9,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': 'Inter var, ui-sans-serif, system-ui',
-      'serif': 'Inter var, ui-sans-serif, system-ui'
+      sans: 'Inter var, ui-sans-serif, system-ui',
+      serif: 'Inter var, ui-sans-serif, system-ui'
     },
     fontSize: {
       sm: '0.875rem',
@@ -20,16 +20,13 @@ module.exports = {
        '3xl': '1.953rem',
        '4xl': '2.441rem',
        '5xl': '3.052rem',
-       '6xl': '3.815rem',
-       '7xl': '4.576rem',
-       '8xl': '5.448rem'
     },
     extend: {}
   },
   daisyui: {
     themes: [
       {
-        'fantasy': {
+        fantasy: {
           primary: '#0000ff',
           'primary-content': 'white',
           secondary: '#F6F6F6',

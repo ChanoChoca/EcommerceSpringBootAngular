@@ -19,6 +19,11 @@ To run the dev server for your app, use:
 npx nx serve ecom-frontend
 ```
 
+To run the backend, use:
+```sh
+npx nx run ecom-backend:serve
+```
+
 To create a production bundle:
 
 ```sh
