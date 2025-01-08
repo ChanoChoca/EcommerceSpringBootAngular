@@ -7,7 +7,7 @@
         <span class="label-text">Name</span>
       </div>
       <input type="text" placeholder="Type name here" class="input input-bordered w-full"
-      formControlName="name" [class.input-error]="name.invalid && !name.untouched">
+      formControlName="name" [class.input-error]="name.invalid && !name.untouched"/>
       <div class="label">
         <span class="label-text-alt text-red-600" *ngxControlError="name; track: 'required'">
           Name is required

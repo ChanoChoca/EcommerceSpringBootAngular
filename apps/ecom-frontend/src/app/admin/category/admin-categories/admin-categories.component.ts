@@ -32,7 +32,7 @@ export class AdminCategoriesComponent {
     mutationFn: (categoryPublicId: string) =>
       lastValueFrom(this.productAdminService.deleteCategory(categoryPublicId)),
     onSuccess: () => this.onDeletionSuccess(),
-    onError: () => this.onDeletionSuccess(),
+    onError: () => this.onDeletionError(),
   }));
 
   private onDeletionSuccess(): void {

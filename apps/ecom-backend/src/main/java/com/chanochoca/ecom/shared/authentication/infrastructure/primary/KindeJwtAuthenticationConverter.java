@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 public class KindeJwtAuthenticationConverter implements Converter<Jwt, AbstractAuthenticationToken> {
   @Override
-  public AbstractAuthenticationToken convert (@NonNull Jwt source) {
+  public AbstractAuthenticationToken convert(@NonNull Jwt source) {
     // JwtAuthenticationToken sirve para verificar la identidad del usuario y sus permisos
     // JwtGrantedAuthoritiesConverter sirve para extraer los GrantedAuthority de los atributos del ámbito típicamente encontrados en un JWT
     return new JwtAuthenticationToken(source,

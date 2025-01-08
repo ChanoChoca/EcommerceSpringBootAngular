@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
   styleUrl: './create-category.component.scss',
 })
 export class CreateCategoryComponent {
-
   formBuilder = inject(FormBuilder);
   productService = inject(AdminProductService);
   toastService = inject(ToastService);
