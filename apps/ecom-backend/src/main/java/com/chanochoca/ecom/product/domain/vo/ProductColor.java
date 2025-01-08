@@ -1,4 +1,4 @@
-package com.chanochoca.ecom.product.vo;
+package com.chanochoca.ecom.product.domain.vo;
 
 import com.chanochoca.ecom.shared.error.domain.NotAColorException;
 

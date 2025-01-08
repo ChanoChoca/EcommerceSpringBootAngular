@@ -1,4 +1,4 @@
-package com.chanochoca.ecom.product.vo;
+package com.chanochoca.ecom.product.domain.vo;
 
 public enum ProductSize {
   XS, S, M, L, XL, XXL

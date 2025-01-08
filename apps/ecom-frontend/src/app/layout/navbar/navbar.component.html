@@ -1,7 +1,7 @@
 <div class="navbar bg-base-100">
   <div class="navbar-start">
     <div class="dropdown">
-      <a href="" class="btn btn-ghost text-xl">
+      <a class="btn btn-ghost text-xl">
         <div class="border-1 bg-secondary logo p-2 rounded-xl" routerLink="/">EC</div>
       </a>
     </div>
@@ -9,22 +9,43 @@
   <div class="navbar-center flex">
     <div class="menu menu-sm sm:menu-lg menu-horizontal px-1">
       <li><a href="/">Home</a></li>
-      <li>
-        <details #productsMenu>
-          <summary>Products</summary>
-          <ul class="z-30">
-            <li><a href="/products">All</a></li>
-          </ul>
-        </details>
-      </li>
-      <li>
-        <details #adminMenu>
-          <summary>Admin</summary>
-          <ul class="z-30">
-            <li><a href="/products">All</a></li>
-          </ul>
-        </details>
-      </li>
+<!--      <li>-->
+<!--        <details #productsMenu>-->
+<!--          <summary>Products</summary>-->
+<!--          <ul class="z-30">-->
+<!--            @if (categoryQuery.isSuccess() && categoryQuery.data()) {-->
+<!--              @for (category of categoryQuery.data().content; track category.publicId) {-->
+<!--                <li><a [routerLink]="['products']"-->
+<!--                       [queryParams]="{category: category.publicId}"-->
+<!--                       (click)="closeMenu(productsMenu)"-->
+<!--                       (clickOutside)="closeMenu(productsMenu)">{{ category.name }}</a></li>-->
+<!--              }-->
+<!--            }-->
+<!--          </ul>-->
+<!--        </details>-->
+<!--      </li>-->
+      @if (connectedUserQuery?.status() === "success"
+      && oauth2Service.hasAnyAuthorities(connectedUserQuery?.data()!, "ROLE_ADMIN")) {
+        <li>
+          <details #adminMenu>
+            <summary>Admin</summary>
+            <ul class="z-30">
+              <li>
+                <a routerLink="admin/categories/list"
+                   (click)="closeMenu(adminMenu)" (clickOutside)="closeMenu(adminMenu)">Categories</a>
+              </li>
+              <li>
+                <a routerLink="admin/products/list"
+                   (click)="closeMenu(adminMenu)" (clickOutside)="closeMenu(adminMenu)">Products</a>
+              </li>
+              <li>
+                <a routerLink="admin/orders/list"
+                   (click)="closeMenu(adminMenu)" (clickOutside)="closeMenu(adminMenu)">Orders</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+      }
     </div>
   </div>
   <div class="navbar-end pe-4 flex align-items-center">
@@ -56,10 +77,13 @@
         </ul>
       }
     </div>
-    <div class="dropdown dropdown-end me-2" routerLink="/cart">
-      <div tabindex="0" role="button">
-        <fa-icon [icon]="['fas', 'cart-shopping']" class="menu-icon"></fa-icon>
-      </div>
-    </div>
+<!--    <div class="dropdown dropdown-end me-2" routerLink="/cart">-->
+<!--      <div tabindex="0" role="button">-->
+<!--        <div class="indicator">-->
+<!--          <span class="indicator-item badge badge-primary">{{ nbItemsInCart }}</span>-->
+<!--          <fa-icon [icon]="['fas', 'cart-shopping']" class="menu-icon"></fa-icon>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
