@@ -1,6 +1,6 @@
 import {
   faCartShopping,
-  faCheck,
+  faCheck, faShoppingCart,
   faTruckFast,
   faUser,
   faXmark,
@@ -16,5 +16,6 @@ export const fontAwesomeIcons: IconDefinition[] = [
   faFacebook,
   faTwitter,
   faXmark,
-  faCheck
+  faCheck,
+  faShoppingCart
 ]

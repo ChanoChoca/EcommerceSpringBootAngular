@@ -6,7 +6,11 @@ import com.chanochoca.ecom.product.domain.vo.PublicId;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Service
 public class ProductCRUD {
 
   private final ProductRepository productRepository;
@@ -30,5 +34,9 @@ public class ProductCRUD {
       throw new EntityNotFoundException(String.format("No Product deleted with id %s", id));
     }
     return id;
+  }
+
+  public Optional<Product> findOne(PublicId publicId) {
+    return productRepository.findOne(publicId);
   }
 }

@@ -9,21 +9,21 @@
   <div class="navbar-center flex">
     <div class="menu menu-sm sm:menu-lg menu-horizontal px-1">
       <li><a href="/">Home</a></li>
-<!--      <li>-->
-<!--        <details #productsMenu>-->
-<!--          <summary>Products</summary>-->
-<!--          <ul class="z-30">-->
-<!--            @if (categoryQuery.isSuccess() && categoryQuery.data()) {-->
-<!--              @for (category of categoryQuery.data().content; track category.publicId) {-->
-<!--                <li><a [routerLink]="['products']"-->
-<!--                       [queryParams]="{category: category.publicId}"-->
-<!--                       (click)="closeMenu(productsMenu)"-->
-<!--                       (clickOutside)="closeMenu(productsMenu)">{{ category.name }}</a></li>-->
-<!--              }-->
-<!--            }-->
-<!--          </ul>-->
-<!--        </details>-->
-<!--      </li>-->
+      <li>
+        <details #productsMenu>
+          <summary>Products</summary>
+          <ul class="z-30">
+            @if (categoryQuery.isSuccess() && categoryQuery.data()) {
+              @for (category of categoryQuery.data().content; track category.publicId) {
+                <li><a [routerLink]="['products']"
+                       [queryParams]="{category: category.publicId}"
+                       (click)="closeMenu(productsMenu)"
+                       (clickOutside)="closeMenu(productsMenu)">{{ category.name }}</a></li>
+              }
+            }
+          </ul>
+        </details>
+      </li>
       @if (connectedUserQuery?.status() === "success"
       && oauth2Service.hasAnyAuthorities(connectedUserQuery?.data()!, "ROLE_ADMIN")) {
         <li>

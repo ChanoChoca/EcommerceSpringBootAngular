@@ -18,7 +18,10 @@ public class SecurityConfiguration {
   public SecurityFilterChain configure(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize ->
       authorize
+        // Used to allow endpoints to be used without being authenticated and authorized
         .requestMatchers(HttpMethod.GET, "api/categories").permitAll()
+        .requestMatchers(HttpMethod.GET, "api/products-shop/**").permitAll()
+
         .requestMatchers("/api/**").authenticated())
       .csrf(AbstractHttpConfigurer::disable)
       .oauth2ResourceServer(

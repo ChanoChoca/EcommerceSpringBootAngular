@@ -1,5 +1,6 @@
 package com.chanochoca.ecom.product.infrastructure.secondary.repository;
 
+import com.chanochoca.ecom.product.domain.aggregate.FilterQuery;
 import com.chanochoca.ecom.product.domain.aggregate.Picture;
 import com.chanochoca.ecom.product.domain.aggregate.Product;
 import com.chanochoca.ecom.product.domain.repository.ProductRepository;
@@ -62,5 +63,28 @@ public class SpringDataProductRepository implements ProductRepository {
   @Override
   public int delete(PublicId publicId) {
     return jpaProductRepository.deleteByPublicId(publicId.value());
+  }
+
+  @Override
+  public Page<Product> findAllFeaturedProduct(Pageable pageable) {
+    return jpaProductRepository.findAllByFeaturedTrue(pageable).map(ProductEntity::to);
+  }
+
+  @Override
+  public Optional<Product> findOne(PublicId publicId) {
+    return jpaProductRepository.findByPublicId(publicId.value()).map(ProductEntity::to);
+  }
+
+  @Override
+  public Page<Product> findByCategoryExcludingOne(Pageable pageable, PublicId categoryPublicId, PublicId productPublicId) {
+    return jpaProductRepository.findByCategoryPublicIdAndPublicIdNot(pageable, categoryPublicId.value(), productPublicId.value())
+      .map(ProductEntity::to);
+  }
+
+  @Override
+  public Page<Product> findByCategoryAndSize(Pageable pageable, FilterQuery filterQuery) {
+    return jpaProductRepository.findByCategoryPublicIdAndSizesIn(
+      pageable, filterQuery.categoryId().value(), filterQuery.sizes()
+    ).map(ProductEntity::to);
   }
 }
