@@ -43,3 +43,4 @@ Thumbs.db
 
 .angular
 apps/ecom-backend/.env
+apps/ecom-backend/volumes
