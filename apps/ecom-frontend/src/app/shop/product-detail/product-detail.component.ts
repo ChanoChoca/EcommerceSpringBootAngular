@@ -5,10 +5,12 @@ import { UserProductService } from '../../shared/service/user-product.service';
 import { ToastService } from '../../shared/toast/toast.service';
 import { Router } from '@angular/router';
 import { Pagination } from '../../shared/model/request.model';
-import { last, lastValueFrom } from 'rxjs';
+import { interval, last, lastValueFrom, take } from 'rxjs';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { CartService } from '../cart.service';
+import { Product } from '../../admin/model/product.model';
 
 @Component({
   selector: 'ecom-product-detail',
@@ -22,6 +24,7 @@ export class ProductDetailComponent {
   productService = inject(UserProductService);
   router = inject(Router);
   toastService = inject(ToastService);
+  cartService = inject(CartService);
 
   lastPublicId = '';
 
@@ -30,6 +33,9 @@ export class ProductDetailComponent {
     size: 20,
     sort: [],
   };
+
+  labelAddToCart = 'Add to cart';
+  iconAddToCart = 'shopping-cart';
 
   constructor() {
     effect(() => this.handlePublicIdChange());
@@ -78,5 +84,16 @@ export class ProductDetailComponent {
         'ERROR'
       );
     }
+  }
+
+  addToCart(productToAdd: Product) {
+    this.cartService.addToCart(productToAdd.publicId, 'add');
+    this.labelAddToCart = 'Added to cart';
+    this.iconAddToCart = 'check';
+
+    interval(3000).pipe(take(1)).subscribe(() => {
+      this.labelAddToCart = 'Add to cart';
+      this.iconAddToCart = 'shopping-cart'
+    })
   }
 }

@@ -21,7 +21,7 @@ public class SecurityConfiguration {
         // Used to allow endpoints to be used without being authenticated and authorized
         .requestMatchers(HttpMethod.GET, "api/categories").permitAll()
         .requestMatchers(HttpMethod.GET, "api/products-shop/**").permitAll()
-
+        .requestMatchers(HttpMethod.GET, "api/orders/get-cart-details").permitAll()
         .requestMatchers("/api/**").authenticated())
       .csrf(AbstractHttpConfigurer::disable)
       .oauth2ResourceServer(

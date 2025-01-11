@@ -13,6 +13,7 @@ public class CartReader {
 
   public DetailCartResponse getDetails(List<Product> products) {
     List<ProductCart> cartProducts = products.stream().map(ProductCart::from).toList();
-    return DetailCartResponseBuilder.detailCartResponse().products(cartProducts).build();
+    return DetailCartResponseBuilder.detailCartResponse().products(cartProducts)
+      .build();
   }
 }

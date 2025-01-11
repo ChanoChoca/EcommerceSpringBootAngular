@@ -23,5 +23,4 @@ public interface JpaUserRepository extends JpaRepository<UserEntity, Long> {
          " user.addressCountry = :country, user.addressZipCode = :zipCode " +
          "WHERE user.publicId = :userPublicId")
   void updateAddress(UUID userPublicId, String street, String city, String country, String zipCode);
-
 }

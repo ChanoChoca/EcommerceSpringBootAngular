@@ -1,7 +1,7 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Cart, CartItemAdd } from '../shared/model/cart.model';
+import { Cart, CartItemAdd, StripeSession } from '../shared/model/cart.model';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from '../../environments/environment';
 
@@ -9,7 +9,6 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class CartService {
-
   platformId = inject(PLATFORM_ID);
   http = inject(HttpClient);
 
@@ -98,8 +97,10 @@ export class CartService {
       .pipe(map((cart) => this.mapQuantity(cart, cartFromLocalStorage)));
   }
 
-  private mapQuantity(cart: Cart, cartFromLocalStorage: Array<CartItemAdd>) {
-
+  private mapQuantity(
+    cart: Cart,
+    cartFromLocalStorage: Array<CartItemAdd>
+  ): Cart {
     for (const cartItem of cartFromLocalStorage) {
       const foundProduct = cart.products.find(
         (item) => item.publicId === cartItem.publicId
@@ -109,5 +110,18 @@ export class CartService {
       }
     }
     return cart;
+  }
+
+  initPaymentSession(cart: Array<CartItemAdd>): Observable<StripeSession> {
+    return this.http.post<StripeSession>(
+      `${environment.apiUrl}/orders/init-payment`,
+      cart
+    );
+  }
+
+  storeSessionId(sessionId: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(this.keySessionId, sessionId);
+    }
   }
 }

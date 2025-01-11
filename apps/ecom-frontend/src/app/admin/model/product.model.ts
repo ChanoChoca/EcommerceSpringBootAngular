@@ -9,8 +9,8 @@ export interface ProductCategory {
 }
 
 export interface ProductPicture {
-  file: File;
-  mimeType: string;
+  file: File; // extends Blob
+  mimeType: string; // mimeType = MediaType (in this case is an img)
 }
 
 export interface BaseProduct {

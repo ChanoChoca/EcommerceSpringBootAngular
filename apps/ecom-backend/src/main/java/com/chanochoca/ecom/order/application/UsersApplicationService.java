@@ -27,13 +27,13 @@ public class UsersApplicationService {
   public User getAuthenticatedUserWithSync(Jwt jwtToken, boolean forceResync) {
     userSynchronizer.syncWithIdp(jwtToken, forceResync);
     return userReader.getByEmail(new UserEmail(AuthenticatedUser.username().get()))
-      .orElseThrow(() -> new RuntimeException("User not found"));
+      .orElseThrow();
   }
 
   @Transactional(readOnly = true)
   public User getAuthenticatedUser() {
     return userReader.getByEmail(new UserEmail(AuthenticatedUser.username().get()))
-      .orElseThrow(() -> new RuntimeException("User not found"));
+      .orElseThrow();
   }
 
   @Transactional

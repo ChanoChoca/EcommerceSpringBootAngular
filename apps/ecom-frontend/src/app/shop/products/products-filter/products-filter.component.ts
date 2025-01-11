@@ -2,11 +2,10 @@ import { Component, effect, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilterProductsFormContent, ProductFilter, ProductFilterForm, sizes } from '../../../admin/model/product.model';
 import { FormBuilder, FormControl, FormRecord, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductCardComponent } from '../../product-card/product-card.component';
 
 @Component({
   selector: 'ecom-products-filter',
-  imports: [CommonModule, ProductCardComponent, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './products-filter.component.html',
   styleUrl: './products-filter.component.scss',
 })
@@ -27,6 +26,7 @@ export class ProductsFilterComponent {
 
   formFilterProducts =
     this.formBuilder.nonNullable.group<FilterProductsFormContent>({
+      // split(',')[1] returns asc   (in 'createdDate,asc')
       sort: new FormControl<string>(this.sort().split(',')[1], {
         nonNullable: true,
         validators: [Validators.required],
@@ -47,6 +47,7 @@ export class ProductsFilterComponent {
     return sizeFormControl;
   }
 
+  // The goal is to process and update the status of products filters
   private onFilterChange(filter: Partial<ProductFilterForm>) {
     const filterProduct: ProductFilter = {
       size: '',
@@ -55,6 +56,7 @@ export class ProductsFilterComponent {
 
     let sizes: [string, boolean][] = [];
     if (filter.size !== undefined) {
+      // Object.entries are use for convert { XS: true, M: false, etc... } to [['XS', true], ['M', false], etc...]
       sizes = Object.entries(filter.size);
     }
 
@@ -87,6 +89,7 @@ export class ProductsFilterComponent {
     }
   }
 
+  // This updates the values, but not really order
   private updateSortFormValue() {
     if (this.sort()) {
       this.formFilterProducts.controls.sort.setValue(
