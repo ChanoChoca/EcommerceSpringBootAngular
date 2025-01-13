@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AdminProductService } from '../../admin-product.service';
 import { ToastService } from '../../../shared/toast/toast.service';
-import { injectMutation, injectQuery, QueryClient } from '@tanstack/angular-query-experimental';
-// I use @tanstack because is good for getting asynchronous data and manage caché in each request
+import {
+  injectMutation,
+  injectQuery,
+  QueryClient
+} from '@tanstack/angular-query-experimental';
 import { lastValueFrom } from 'rxjs';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 

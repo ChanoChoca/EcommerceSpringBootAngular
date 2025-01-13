@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 sm:grids-cols-2 md:grid-cols-3
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
 lg:grid-cols-4 w-full">
   @if (featuredProductQuery.isSuccess()) {
     @for (product of featuredProductQuery.data().content; track product.publicId) {

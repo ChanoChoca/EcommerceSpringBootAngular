@@ -1,11 +1,15 @@
 package com.chanochoca.ecom.product.application;
 
+import com.chanochoca.ecom.order.domain.order.aggregate.OrderProductQuantity;
 import com.chanochoca.ecom.product.domain.aggregate.Category;
 import com.chanochoca.ecom.product.domain.aggregate.FilterQuery;
 import com.chanochoca.ecom.product.domain.aggregate.Product;
+import com.chanochoca.ecom.product.domain.repository.CategoryRepository;
+import com.chanochoca.ecom.product.domain.repository.ProductRepository;
 import com.chanochoca.ecom.product.domain.service.CategoryCRUD;
 import com.chanochoca.ecom.product.domain.service.ProductCRUD;
 import com.chanochoca.ecom.product.domain.service.ProductShop;
+import com.chanochoca.ecom.product.domain.service.ProductUpdater;
 import com.chanochoca.ecom.product.domain.vo.PublicId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,14 +22,16 @@ import java.util.Optional;
 @Service
 public class ProductsApplicationService {
 
-  private final ProductCRUD productCRUD;
-  private final CategoryCRUD categoryCRUD;
-  private final ProductShop productShop;
+  private ProductCRUD productCRUD;
+  private CategoryCRUD categoryCRUD;
+  private ProductShop productShop;
+  private ProductUpdater productUpdater;
 
-  public ProductsApplicationService(ProductCRUD productCRUD, CategoryCRUD categoryCRUD, ProductShop productShop) {
-    this.productCRUD = productCRUD;
-    this.categoryCRUD = categoryCRUD;
-    this.productShop = productShop;
+  public ProductsApplicationService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    this.productCRUD = new ProductCRUD(productRepository);
+    this.categoryCRUD = new CategoryCRUD(categoryRepository);
+    this.productShop = new ProductShop(productRepository);
+    this.productUpdater = new ProductUpdater(productRepository);
   }
 
   @Transactional
@@ -80,6 +86,11 @@ public class ProductsApplicationService {
 
   @Transactional(readOnly = true)
   public List<Product> getProductsByPublicIdsIn(List<PublicId> publicIds) {
-    return productCRUD.findAllByPublicId(publicIds);
+    return productCRUD.findAllByPublicIdIn(publicIds);
+  }
+
+  @Transactional
+  public void updateProductQuantity(List<OrderProductQuantity> orderProductQuantities) {
+    productUpdater.updateProductQuantity(orderProductQuantities);
   }
 }

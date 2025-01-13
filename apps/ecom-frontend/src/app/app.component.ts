@@ -1,9 +1,13 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FaIconLibrary, FaConfig, FaIconComponent } from '@fortawesome/angular-fontawesome';
+import {
+  FaConfig,
+  FaIconComponent,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
 import { fontAwesomeIcons } from './shared/font-awesome-icons';
-import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FooterComponent } from './layout/footer/footer.component';
 import { Oauth2Service } from './auth/oauth2.service';
 import { isPlatformBrowser, NgClass } from '@angular/common';
 import { ToastService } from './shared/toast/toast.service';
@@ -11,10 +15,10 @@ import { ToastService } from './shared/toast/toast.service';
 @Component({
   imports: [
     RouterModule,
-    FooterComponent,
-    NavbarComponent,
-    NgClass,
     FaIconComponent,
+    NavbarComponent,
+    FooterComponent,
+    NgClass,
   ],
   selector: 'ecom-root',
   templateUrl: './app.component.html',

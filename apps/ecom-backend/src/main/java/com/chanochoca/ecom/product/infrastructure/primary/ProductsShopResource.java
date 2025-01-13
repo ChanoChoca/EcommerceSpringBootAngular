@@ -46,7 +46,7 @@ public class ProductsShopResource {
     Optional<Product> productOpt = productsApplicationService.findOne(new PublicId(id));
 
     return productOpt.map(product -> ResponseEntity.ok(RestProduct.fromDomain(product)))
-      .orElseGet(() -> ResponseEntity.notFound().build());
+      .orElseGet(() -> ResponseEntity.badRequest().build());
   }
 
   @GetMapping("/related")
@@ -68,10 +68,10 @@ public class ProductsShopResource {
   @GetMapping("/filter")
   public ResponseEntity<Page<RestProduct>> filter(Pageable pageable,
                                                   @RequestParam("categoryId") UUID categoryId,
-                                                  @RequestParam(value = "productSizes", required = false) List<ProductSize> productSizes) {
+                                                  @RequestParam(value = "productSizes", required = false)List<ProductSize> productSizes) {
     FilterQueryBuilder filterQueryBuilder = FilterQueryBuilder.filterQuery().categoryId(new PublicId(categoryId));
 
-    if (productSizes != null) {
+    if(productSizes != null) {
       filterQueryBuilder.sizes(productSizes);
     }
 

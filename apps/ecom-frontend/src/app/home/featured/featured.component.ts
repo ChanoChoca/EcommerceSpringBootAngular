@@ -13,7 +13,6 @@ import { ProductCardComponent } from '../../shop/product-card/product-card.compo
   styleUrl: './featured.component.scss',
 })
 export class FeaturedComponent {
-
   productService = inject(UserProductService);
 
   pageRequest: Pagination = {
@@ -24,7 +23,9 @@ export class FeaturedComponent {
 
   featuredProductQuery = injectQuery(() => ({
     queryKey: ['featured-products', this.pageRequest],
-    queryFn: () => lastValueFrom(this.productService.findAllFeaturedProducts(this.pageRequest))
-  }))
-
+    queryFn: () =>
+      lastValueFrom(
+        this.productService.findAllFeaturedProducts(this.pageRequest)
+      ),
+  }));
 }

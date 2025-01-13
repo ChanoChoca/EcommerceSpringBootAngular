@@ -3,7 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { CartService } from '../cart.service';
 import { Oauth2Service } from '../../auth/oauth2.service';
 import { ToastService } from '../../shared/toast/toast.service';
-import { CartItem, CartItemAdd, StripeSession } from '../../shared/model/cart.model';
+import { CartItem, CartItemAdd, StripeSession } from '../cart.model';
 import { injectMutation, injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom } from 'rxjs';
 import { RouterLink } from '@angular/router';

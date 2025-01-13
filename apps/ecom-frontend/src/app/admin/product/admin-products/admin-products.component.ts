@@ -2,7 +2,11 @@ import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminProductService } from '../../admin-product.service';
 import { ToastService } from '../../../shared/toast/toast.service';
-import { injectMutation, injectQuery, injectQueryClient } from '@tanstack/angular-query-experimental';
+import {
+  injectMutation,
+  injectQuery,
+  QueryClient
+} from '@tanstack/angular-query-experimental';
 import { Pagination } from '../../../shared/model/request.model';
 import { lastValueFrom } from 'rxjs';
 import { RouterLink } from '@angular/router';
@@ -17,7 +21,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 export class AdminProductsComponent {
   productService = inject(AdminProductService);
   toastService = inject(ToastService);
-  queryClient = injectQueryClient();
+  queryClient = new QueryClient();
 
   pageRequest: Pagination = {
     page: 0,

@@ -1,7 +1,5 @@
-package com.chanochoca.ecom.order.domain.order.aggregate;
+package com.chanochoca.ecom.product.domain.aggregate;
 
-import com.chanochoca.ecom.product.domain.aggregate.Picture;
-import com.chanochoca.ecom.product.domain.aggregate.Product;
 import com.chanochoca.ecom.product.domain.vo.ProductBrand;
 import com.chanochoca.ecom.product.domain.vo.ProductName;
 import com.chanochoca.ecom.product.domain.vo.ProductPrice;
@@ -22,7 +20,11 @@ public class ProductCart {
 
   private PublicId publicId;
 
-  public ProductCart(ProductName name, ProductPrice price, ProductBrand brand, Picture picture, PublicId publicId) {
+  public ProductCart() {
+  }
+
+  public ProductCart(ProductName name, ProductPrice price, ProductBrand brand,
+                     Picture picture, PublicId publicId) {
     assertFields(name, price, brand, picture, publicId);
     this.name = name;
     this.price = price;
@@ -31,7 +33,8 @@ public class ProductCart {
     this.publicId = publicId;
   }
 
-  private void assertFields(ProductName name, ProductPrice price, ProductBrand brand, Picture picture, PublicId publicId) {
+  private void assertFields(ProductName name, ProductPrice price, ProductBrand brand,
+                     Picture picture, PublicId publicId) {
     Assert.notNull("brand", brand);
     Assert.notNull("name", name);
     Assert.notNull("price", price);

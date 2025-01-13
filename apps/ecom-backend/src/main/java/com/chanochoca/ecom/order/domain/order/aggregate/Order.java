@@ -51,7 +51,7 @@ public class Order {
   }
 
   public static Order create(User connectedUser, List<OrderedProduct> orderedProducts,
-                             StripeSessionId stripeSessionId) {
+                       StripeSessionId stripeSessionId) {
     return OrderBuilder.order()
       .publicId(new PublicId(UUID.randomUUID()))
       .user(connectedUser)

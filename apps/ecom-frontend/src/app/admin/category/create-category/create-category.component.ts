@@ -1,9 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ToastService } from '../../../shared/toast/toast.service';
-import { CreateCategoryFormContent, ProductCategory } from '../../model/product.model';
+import {
+  FormBuilder,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AdminProductService } from '../../admin-product.service';
+import { ToastService } from '../../../shared/toast/toast.service';
+import {
+  CreateCategoryFormContent,
+  ProductCategory,
+} from '../../model/product.model';
 import { injectMutation } from '@tanstack/angular-query-experimental';
 import { lastValueFrom } from 'rxjs';
 import { NgxControlError } from 'ngxtension/control-error';

@@ -1,6 +1,6 @@
 package com.chanochoca.ecom.order.infrastructure.primary.order;
 
-import com.chanochoca.ecom.order.domain.order.aggregate.ProductCart;
+import com.chanochoca.ecom.product.domain.aggregate.ProductCart;
 import com.chanochoca.ecom.product.infrastructure.primary.RestPicture;
 import org.jilt.Builder;
 

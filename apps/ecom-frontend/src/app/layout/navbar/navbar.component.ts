@@ -62,8 +62,11 @@ export class NavbarComponent implements OnInit {
   }
 
   private listenToCart() {
-    this.cartService.addedToCart.subscribe(productsInCart => {
-      this.nbItemsInCart = productsInCart.reduce((acc, product) => acc + product.quantity, 0);
-    })
+    this.cartService.addedToCart.subscribe((productsInCart) => {
+      this.nbItemsInCart = productsInCart.reduce(
+        (acc, product) => acc + product.quantity,
+        0
+      );
+    });
   }
 }

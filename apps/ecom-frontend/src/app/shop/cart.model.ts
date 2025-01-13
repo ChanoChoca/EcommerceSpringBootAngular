@@ -1,4 +1,4 @@
-import { ProductPicture } from '../../admin/model/product.model';
+import { ProductPicture } from '../admin/model/product.model';
 
 export interface CartItemAdd {
   publicId: string,

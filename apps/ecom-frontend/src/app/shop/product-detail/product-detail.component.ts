@@ -5,7 +5,7 @@ import { UserProductService } from '../../shared/service/user-product.service';
 import { ToastService } from '../../shared/toast/toast.service';
 import { Router } from '@angular/router';
 import { Pagination } from '../../shared/model/request.model';
-import { interval, last, lastValueFrom, take } from 'rxjs';
+import { interval, lastValueFrom, take } from 'rxjs';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ProductCardComponent } from '../product-card/product-card.component';
@@ -61,10 +61,12 @@ export class ProductDetailComponent {
   }));
 
   private handlePublicIdChange() {
-    if (this.publicId) {
+    if (this.publicId()) {
       if (this.lastPublicId != this.publicId() && this.lastPublicId !== '') {
         this.relatedProductQuery.refetch();
+        this.productQuery.refetch();
       }
+      this.lastPublicId = this.publicId()!;
     }
   }
 
@@ -91,9 +93,11 @@ export class ProductDetailComponent {
     this.labelAddToCart = 'Added to cart';
     this.iconAddToCart = 'check';
 
-    interval(3000).pipe(take(1)).subscribe(() => {
-      this.labelAddToCart = 'Add to cart';
-      this.iconAddToCart = 'shopping-cart'
-    })
+    interval(3000)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.labelAddToCart = 'Add to cart';
+        this.iconAddToCart = 'shopping-cart';
+      });
   }
 }

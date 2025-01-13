@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { ProductsComponent } from './shop/products/products.component';
 import { CartComponent } from './shop/cart/cart.component';
+import { CartSuccessComponent } from './shop/cart-success/cart-success.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { UserOrdersComponent } from './user/user-orders/user-orders.component';
 
 export const appRoutes: Route[] = [
   {
@@ -43,6 +46,14 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'admin/orders/list',
+    component: AdminOrdersComponent,
+    canActivate: [roleCheckGuard],
+    data: {
+      authorities: ['ROLE_ADMIN'],
+    },
+  },
+  {
     path: '',
     component: HomeComponent,
   },
@@ -56,6 +67,14 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+  },
+  {
+    path: 'cart/success',
+    component: CartSuccessComponent,
+  },
+  {
+    path: 'users/orders',
+    component: UserOrdersComponent
   }
 ];

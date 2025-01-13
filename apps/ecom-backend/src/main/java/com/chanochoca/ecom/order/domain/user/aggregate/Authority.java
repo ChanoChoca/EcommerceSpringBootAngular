@@ -7,7 +7,7 @@ import org.jilt.Builder;
 @Builder
 public class Authority {
 
-  private final AuthorityName name;
+  private AuthorityName name;
 
   public Authority(AuthorityName authorityName) {
     Assert.notNull("name", authorityName);

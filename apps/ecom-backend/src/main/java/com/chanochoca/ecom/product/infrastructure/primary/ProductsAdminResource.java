@@ -1,11 +1,11 @@
 package com.chanochoca.ecom.product.infrastructure.primary;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.chanochoca.ecom.product.application.ProductsApplicationService;
 import com.chanochoca.ecom.product.domain.aggregate.Product;
 import com.chanochoca.ecom.product.domain.vo.PublicId;
 import com.chanochoca.ecom.product.infrastructure.primary.exceptions.MultipartPictureException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

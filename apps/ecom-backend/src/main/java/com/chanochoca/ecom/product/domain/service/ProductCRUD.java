@@ -6,12 +6,10 @@ import com.chanochoca.ecom.product.domain.vo.PublicId;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class ProductCRUD {
 
   private final ProductRepository productRepository;
@@ -41,7 +39,7 @@ public class ProductCRUD {
     return productRepository.findOne(publicId);
   }
 
-  public List<Product> findAllByPublicId(List<PublicId> publicIds) {
+  public List<Product> findAllByPublicIdIn(List<PublicId> publicIds) {
     return productRepository.findByPublicIds(publicIds);
   }
 }

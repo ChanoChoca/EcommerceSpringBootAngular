@@ -1,5 +1,6 @@
 package com.chanochoca.ecom.order.domain.order.aggregate;
 
+import com.chanochoca.ecom.product.domain.aggregate.ProductCart;
 import org.jilt.Builder;
 
 import java.util.List;

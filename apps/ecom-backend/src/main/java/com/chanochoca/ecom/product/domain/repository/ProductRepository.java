@@ -1,5 +1,6 @@
 package com.chanochoca.ecom.product.domain.repository;
 
+import com.chanochoca.ecom.order.domain.order.vo.ProductPublicId;
 import com.chanochoca.ecom.product.domain.aggregate.FilterQuery;
 import com.chanochoca.ecom.product.domain.aggregate.Product;
 import com.chanochoca.ecom.product.domain.vo.PublicId;
@@ -26,4 +27,6 @@ public interface ProductRepository {
   Page<Product> findByCategoryAndSize(Pageable pageable, FilterQuery filterQuery);
 
   List<Product> findByPublicIds(List<PublicId> publicIds);
+
+  void updateQuantity(ProductPublicId productPublicId, long quantity);
 }
