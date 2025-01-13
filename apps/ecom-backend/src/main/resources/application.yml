@@ -76,11 +76,14 @@ application:
     exposed-headers: "*"
     allow-credentials: false
     max-age: 300
+  #
   kinde:
     api: https://chanochoca.kinde.com
     client-id: ${KINDE_CLIENT_ID}
     client-secret: ${KINDE_CLIENT_SECRET}
     audience: https://chanochoca.kinde.com/api
   stripe:
+    # STRIPE_API_KEY is the secret key
     api-key: ${STRIPE_API_KEY}
+    # Do the following steps for STRIPE_WEBHOOK_SECRET (https://docs.stripe.com/stripe-cli?install-method=windows)
     webhook-secret: ${STRIPE_WEBHOOK_SECRET}

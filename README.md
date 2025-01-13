@@ -1,4 +1,4 @@
-# Ecommerce
+# Ecommerce Spring Boot Angular
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
@@ -10,6 +10,16 @@
 
 [Click here to finish setting up your workspace!](https://cloud.nx.app/connect/wiMJ301Qpb)
 
+* Angular 18
+
+## Libraries used
+
+* Tailwind CSS
+* Fontawesome
+* Tanstack: (https://www.npmjs.com/package/@tanstack/angular-query-experimental)
+* DaisyUI: (https://daisyui.com/)
+* Angular auth oidc client
+* Nxrocks Spring Boot
 
 ## Run tasks
 
